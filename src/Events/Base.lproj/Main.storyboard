@@ -89,7 +89,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="r3U-eJ-S1Z"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Events" image="calendar" catalog="system" id="8ck-BD-lP2"/>
+                    <tabBarItem key="tabBarItem" title="Events" image="calendar.circle.fill" catalog="system" id="8ck-BD-lP2"/>
                     <connections>
                         <outlet property="tableView" destination="ewA-J9-zaH" id="F0e-aE-1tr"/>
                     </connections>
@@ -118,7 +118,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="calendar" catalog="system" width="64" height="54"/>
+        <image name="calendar.circle.fill" catalog="system" width="64" height="62"/>
         <image name="star.fill" catalog="system" width="64" height="58"/>
     </resources>
 </document>

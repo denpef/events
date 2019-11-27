@@ -1,0 +1,28 @@
+# format options
+--allman false
+--closingparen same-line
+--commas inline
+--decimalgrouping none
+--elseposition same-line
+--empty void
+--header strip
+--hexgrouping none
+--ifdef indent
+--importgrouping alphabetized
+--indent 4
+--indentcase false
+--linebreaks lf
+--octalgrouping none
+--operatorfunc spaced
+--patternlet hoist
+--ranges no-space
+--self remove
+--semicolons inline
+--stripunusedargs always
+--trailingclosures 
+--trimwhitespace always
+--wraparguments after-first
+--wrapcollections after-first
+
+# rules
+--exclude Pods/**, Resources/**, Generated/**

@@ -1,16 +1,7 @@
-//
-//  EventsTests.swift
-//  EventsTests
-//
-//  Created by Denis Efimov on 11/27/19.
-//  Copyright © 2019 Denis Efimov. All rights reserved.
-//
-
-import XCTest
 @testable import Events
+import XCTest
 
 class EventsTests: XCTestCase {
-
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -26,9 +17,8 @@ class EventsTests: XCTestCase {
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measure {
+        measure {
             // Put the code you want to measure the time of here.
         }
     }
-
 }

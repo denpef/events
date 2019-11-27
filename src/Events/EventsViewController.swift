@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  Events
-//
-//  Created by Denis Efimov on 11/27/19.
-//  Copyright © 2019 Denis Efimov. All rights reserved.
-//
-
 import UIKit
 
 struct Event: Decodable {
@@ -13,11 +5,10 @@ struct Event: Decodable {
 }
 
 class EventsViewController: UIViewController {
-    
-    @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet var tableView: UITableView!
+
     var events: [Event] = [Event(name: "First"), Event(name: "Second")]
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -25,14 +16,14 @@ class EventsViewController: UIViewController {
 }
 
 extension EventsViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in _: UITableView) -> Int {
         return 1
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return events.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath)
         cell.textLabel?.text = events[indexPath.row].name
@@ -41,8 +32,7 @@ extension EventsViewController: UITableViewDataSource {
 }
 
 extension EventsViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(events[indexPath.row].name)
     }
 }
-
