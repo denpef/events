@@ -174,10 +174,9 @@
 		BE1628B6238EC43400CB3E99 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				BE1628BD238EDFC600CB3E99 /* NetworkProvider.swift */,
-				BE1628C6238EEF6000CB3E99 /* Scheduler.swift */,
-				BE1628C4238EEF4600CB3E99 /* NetworkError.swift */,
 				BE1628BF238EEEB500CB3E99 /* API.swift */,
+				BE1628BD238EDFC600CB3E99 /* NetworkProvider.swift */,
+				BE1628C8238EF02100CB3E99 /* Utils */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -206,6 +205,15 @@
 				BE1628C2238EEF1700CB3E99 /* DateFormatter+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		BE1628C8238EF02100CB3E99 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				BE1628C6238EEF6000CB3E99 /* Scheduler.swift */,
+				BE1628C4238EEF4600CB3E99 /* NetworkError.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

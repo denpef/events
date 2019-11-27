@@ -8,7 +8,8 @@ struct Event: Decodable {
 class EventsViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
 
-    var events: [Event] = [Event(name: "First",
+    private var viewModel = EventsViewModel()
+    private var events: [Event] = [Event(name: "First",
                                  urlLink: "http://google.com"),
                            Event(name: "Second",
                                  urlLink: "http://google.com")]

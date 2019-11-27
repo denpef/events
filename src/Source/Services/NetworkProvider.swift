@@ -2,16 +2,12 @@ import RxCocoa
 import RxSwift
 
 final class NetworkProvider {
-    private let urlSession: URLSession
+    private let urlSession = URLSession(configuration: URLSessionConfiguration.default)
     private lazy var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .formatted(DateFormatter.APIFormatter)
         return decoder
     }()
-
-    private init() {
-        urlSession = URLSession(configuration: URLSessionConfiguration.default)
-    }
 
     func request<T: Decodable>(url: String) -> Observable<Result<T, NetworkError>> {
         guard let url = URL(string: url) else {
