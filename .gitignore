@@ -1,0 +1,56 @@
+# OS X
+.DS_Store
+
+# Xcode
+## Build generated
+build/
+DerivedData/
+**/**/*xcuserdata*
+*/**/IDEWorkspaceChecks.plist
+**/build/
+*/**/*.ipa
+.idea
+*.lock
+**/*.lock
+
+**/build/
+*/**/*.ipa
+.idea
+*.lock
+**/*.lock
+
+## Various settings
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+
+## Other
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint
+
+## Obj-C/Swift specific
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+## Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# Swift Package Manager
+# Packages/
+# Package.pins
+# Package.resolved
+.build/
+
+# CocoaPods
+#src/Pods/
+#src/Podfile.lock
