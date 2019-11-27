@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		BE16288D238EADD700CB3E99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE16288C238EADD700CB3E99 /* AppDelegate.swift */; };
-		BE16288F238EADD700CB3E99 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE16288E238EADD700CB3E99 /* SceneDelegate.swift */; };
-		BE162891238EADD700CB3E99 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE162890238EADD700CB3E99 /* ViewController.swift */; };
+		BE162891238EADD700CB3E99 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE162890238EADD700CB3E99 /* EventsViewController.swift */; };
 		BE162894238EADD700CB3E99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE162892238EADD700CB3E99 /* Main.storyboard */; };
 		BE162896238EADD800CB3E99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE162895238EADD800CB3E99 /* Assets.xcassets */; };
 		BE162899238EADD800CB3E99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE162897238EADD800CB3E99 /* LaunchScreen.storyboard */; };
 		BE1628A4238EADD800CB3E99 /* EventsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1628A3238EADD800CB3E99 /* EventsTests.swift */; };
+		BE1628AF238EAEE000CB3E99 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1628AE238EAEE000CB3E99 /* FavoritesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,8 +29,7 @@
 /* Begin PBXFileReference section */
 		BE162889238EADD700CB3E99 /* Events.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Events.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE16288C238EADD700CB3E99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BE16288E238EADD700CB3E99 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BE162890238EADD700CB3E99 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BE162890238EADD700CB3E99 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		BE162893238EADD700CB3E99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BE162895238EADD800CB3E99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE162898238EADD800CB3E99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -38,6 +37,7 @@
 		BE16289F238EADD800CB3E99 /* EventsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE1628A3238EADD800CB3E99 /* EventsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTests.swift; sourceTree = "<group>"; };
 		BE1628A5238EADD800CB3E99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE1628AE238EAEE000CB3E99 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +80,8 @@
 			isa = PBXGroup;
 			children = (
 				BE16288C238EADD700CB3E99 /* AppDelegate.swift */,
-				BE16288E238EADD700CB3E99 /* SceneDelegate.swift */,
-				BE162890238EADD700CB3E99 /* ViewController.swift */,
+				BE162890238EADD700CB3E99 /* EventsViewController.swift */,
+				BE1628AE238EAEE000CB3E99 /* FavoritesViewController.swift */,
 				BE162892238EADD700CB3E99 /* Main.storyboard */,
 				BE162895238EADD800CB3E99 /* Assets.xcassets */,
 				BE162897238EADD800CB3E99 /* LaunchScreen.storyboard */,
@@ -200,9 +200,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE162891238EADD700CB3E99 /* ViewController.swift in Sources */,
+				BE162891238EADD700CB3E99 /* EventsViewController.swift in Sources */,
+				BE1628AF238EAEE000CB3E99 /* FavoritesViewController.swift in Sources */,
 				BE16288D238EADD700CB3E99 /* AppDelegate.swift in Sources */,
-				BE16288F238EADD700CB3E99 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,6 +365,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PF72V5DW9Y;
 				INFOPLIST_FILE = Events/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -372,7 +373,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = iTechArtGroup.Events;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -383,6 +384,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PF72V5DW9Y;
 				INFOPLIST_FILE = Events/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -390,7 +392,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = iTechArtGroup.Events;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
