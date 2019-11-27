@@ -37,7 +37,7 @@
 		BE16289F238EADD800CB3E99 /* EventsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE1628A3238EADD800CB3E99 /* EventsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTests.swift; sourceTree = "<group>"; };
 		BE1628A5238EADD800CB3E99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BE1628AE238EAEE000CB3E99 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavoritesViewController.swift; path = Events/FavoritesViewController.swift; sourceTree = SOURCE_ROOT; };
+		BE1628AE238EAEE000CB3E99 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavoritesViewController.swift; path = Source/Scenes/FavoritesViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +61,8 @@
 		BE162880238EADD700CB3E99 = {
 			isa = PBXGroup;
 			children = (
+				BE1628B4238EC3E400CB3E99 /* Source */,
+				BE1628B3238EC3D400CB3E99 /* Resources */,
 				BE16288B238EADD700CB3E99 /* Events */,
 				BE1628A2238EADD800CB3E99 /* EventsTests */,
 				BE16288A238EADD700CB3E99 /* Products */,
@@ -80,10 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				BE16288C238EADD700CB3E99 /* AppDelegate.swift */,
-				BE162890238EADD700CB3E99 /* EventsViewController.swift */,
-				BE1628AE238EAEE000CB3E99 /* FavoritesViewController.swift */,
 				BE162892238EADD700CB3E99 /* Main.storyboard */,
-				BE162895238EADD800CB3E99 /* Assets.xcassets */,
 				BE162897238EADD800CB3E99 /* LaunchScreen.storyboard */,
 				BE16289A238EADD800CB3E99 /* Info.plist */,
 			);
@@ -97,6 +96,39 @@
 				BE1628A5238EADD800CB3E99 /* Info.plist */,
 			);
 			path = EventsTests;
+			sourceTree = "<group>";
+		};
+		BE1628B3238EC3D400CB3E99 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BE162895238EADD800CB3E99 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		BE1628B4238EC3E400CB3E99 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				BE1628B6238EC43400CB3E99 /* Services */,
+				BE1628B5238EC42A00CB3E99 /* Scenes */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		BE1628B5238EC42A00CB3E99 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				BE162890238EADD700CB3E99 /* EventsViewController.swift */,
+				BE1628AE238EAEE000CB3E99 /* FavoritesViewController.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		BE1628B6238EC43400CB3E99 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
