@@ -19,7 +19,7 @@ final class EventService {
     init(api: API) {
         self.api = api
 
-        let refreshEvents = BehaviorSubject<Void>(value: ())
+        let refreshEvents = PublishSubject<Void>()
 
         let swapFavoriteMark = PublishSubject<Event>()
         swapFavoriteMark.subscribe(onNext: { event in
@@ -32,26 +32,17 @@ final class EventService {
             UserDefaults.standard.set(favoriteSet, forKey: "favorite")
         }).disposed(by: disposeBag)
 
-//        let serverEvents: Observable<[Event]> = refreshEvents.map { [weak self] _ in
-//            guard let self = self else {
-//                return []
-//            }
-//            self.api.getEvents()
-//            .map { result -> [Event] in
-//                switch result {
-//                case let .success(eventsData):
-//                    return eventsData.events.event
-//                default:
-//                    return []
-//                }
-//            }
-//        }
-
         let serverEvents = self.api.getEvents()
+
+//        refreshEvents.subscribe(onNext: {
+//            serverEvents = api.getEvents()
+//        }).disposed(by: disposeBag)
+
+        let asdaskjhdhjasgkfdhj = Observable.merge(serverEvents, refreshEvents.flatMapLatest { api.getEvents() })
 
         input = Input(refreshEvents: refreshEvents.asObserver(),
                       swapFavoriteMark: swapFavoriteMark.asObserver())
-        output = Output(serverEvents: serverEvents)
+        output = Output(serverEvents: asdaskjhdhjasgkfdhj)
     }
 
     private var favorite: Set<Event> {

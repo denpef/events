@@ -60,12 +60,16 @@ class EventsViewController: UIViewController {
         let indicatorAnimating = Driver.merge(viewModel.output.error.map { _ in false },
                                               viewModel.output.events.map { _ in false })
 
+        indicatorAnimating.drive(onNext: {
+            print($0)
+        }).disposed(by: disposeBag)
+
         indicatorAnimating
             .drive(activityIndicator.rx.isAnimating)
             .disposed(by: disposeBag)
 
         indicatorAnimating
-            .drive(refreshControl.rx.isEnabled)
+            .drive(refreshControl.rx.isRefreshing)
             .disposed(by: disposeBag)
     }
 

@@ -13,16 +13,6 @@ struct EventsViewModel {
         let error: Driver<String>
     }
 
-    // --- Actions ---
-    //
-    // ! Open link - selectEvent
-    // ! Tap favorites - updateFavoriteMark
-    // + refresh control - refreshData
-    //
-    // + handle error - error
-    // ?? request events first time
-    //
-
     var input: Input
     var output: Output
 
@@ -32,9 +22,9 @@ struct EventsViewModel {
     init(eventService: EventService) {
         self.eventService = eventService
 
-        let serverEvents: Observable<EventsData> = self.eventService.output.serverEvents
-
-        let events: Observable<[Event]> = serverEvents.map { $0.events.event }
+        let events: Driver<[Event]> = self.eventService.output.serverEvents
+            .map { $0.events.event }
+            .asDriver(onErrorJustReturn: [])
 
         let updateFavoriteMark = PublishSubject<Event>()
         updateFavoriteMark
@@ -57,7 +47,7 @@ struct EventsViewModel {
                       selectedItem: selectEvent.asObserver(),
                       tapFavorite: updateFavoriteMark.asObserver())
 
-        output = Output(events: events.asDriver(onErrorJustReturn: []),
+        output = Output(events: events,
                         error: error.asDriver(onErrorJustReturn: "Unknown error"))
     }
 }
