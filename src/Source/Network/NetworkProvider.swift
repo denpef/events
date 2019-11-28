@@ -7,6 +7,7 @@ final class NetworkProvider {
     // MARK: - Private properties
 
     private let urlSession = URLSession(configuration: URLSessionConfiguration.default)
+
     private lazy var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .formatted(DateFormatter.APIFormatter)
