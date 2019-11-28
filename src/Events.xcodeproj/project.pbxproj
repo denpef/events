@@ -23,6 +23,9 @@
 		BE1628C3238EEF1700CB3E99 /* DateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1628C2238EEF1700CB3E99 /* DateFormatter+Extensions.swift */; };
 		BE1628C5238EEF4600CB3E99 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1628C4238EEF4600CB3E99 /* NetworkError.swift */; };
 		BE1628C7238EEF6000CB3E99 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1628C6238EEF6000CB3E99 /* Scheduler.swift */; };
+		BE1628CA238EF12800CB3E99 /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1628C9238EF12800CB3E99 /* EventService.swift */; };
+		BE1628CC238EFA2F00CB3E99 /* OpenURLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1628CB238EFA2F00CB3E99 /* OpenURLService.swift */; };
+		BE1628CF2390215800CB3E99 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1628CE2390215800CB3E99 /* Events.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +61,9 @@
 		BE1628C2238EEF1700CB3E99 /* DateFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		BE1628C4238EEF4600CB3E99 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		BE1628C6238EEF6000CB3E99 /* Scheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
+		BE1628C9238EF12800CB3E99 /* EventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventService.swift; sourceTree = "<group>"; };
+		BE1628CB238EFA2F00CB3E99 /* OpenURLService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenURLService.swift; sourceTree = "<group>"; };
+		BE1628CE2390215800CB3E99 /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		F2E26DF3958D3209373EF6C0 /* Pods-EventsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventsTests.debug.xcconfig"; path = "Target Support Files/Pods-EventsTests/Pods-EventsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FAC8B8A0ACFA87FE1B537616 /* Pods-Events.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Events.debug.xcconfig"; path = "Target Support Files/Pods-Events/Pods-Events.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -155,6 +161,7 @@
 		BE1628B4238EC3E400CB3E99 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				BE1628CD2390214B00CB3E99 /* Models */,
 				BE1628C1238EEEF500CB3E99 /* Extensions */,
 				BE1628B6238EC43400CB3E99 /* Services */,
 				BE1628B5238EC42A00CB3E99 /* Scenes */,
@@ -175,6 +182,8 @@
 			isa = PBXGroup;
 			children = (
 				BE1628BF238EEEB500CB3E99 /* API.swift */,
+				BE1628CB238EFA2F00CB3E99 /* OpenURLService.swift */,
+				BE1628C9238EF12800CB3E99 /* EventService.swift */,
 				BE1628BD238EDFC600CB3E99 /* NetworkProvider.swift */,
 				BE1628C8238EF02100CB3E99 /* Utils */,
 			);
@@ -214,6 +223,14 @@
 				BE1628C4238EEF4600CB3E99 /* NetworkError.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		BE1628CD2390214B00CB3E99 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BE1628CE2390215800CB3E99 /* Events.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -440,12 +457,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE1628CF2390215800CB3E99 /* Events.swift in Sources */,
 				BE1628BA238EDD0200CB3E99 /* FavoritesViewModel.swift in Sources */,
 				BE162891238EADD700CB3E99 /* EventsViewController.swift in Sources */,
 				BE1628B8238EDCF300CB3E99 /* EventsViewModel.swift in Sources */,
 				BE1628C7238EEF6000CB3E99 /* Scheduler.swift in Sources */,
 				BE1628AF238EAEE000CB3E99 /* FavoritesViewController.swift in Sources */,
+				BE1628CC238EFA2F00CB3E99 /* OpenURLService.swift in Sources */,
 				BE16288D238EADD700CB3E99 /* AppDelegate.swift in Sources */,
+				BE1628CA238EF12800CB3E99 /* EventService.swift in Sources */,
 				BE1628BE238EDFC600CB3E99 /* NetworkProvider.swift in Sources */,
 				BE1628C5238EEF4600CB3E99 /* NetworkError.swift in Sources */,
 				BE1628C3238EEF1700CB3E99 /* DateFormatter+Extensions.swift in Sources */,

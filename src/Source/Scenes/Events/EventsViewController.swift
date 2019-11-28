@@ -1,54 +1,78 @@
+import RxCocoa
+import RxDataSources
+import RxSwift
 import UIKit
 
-struct Event: Decodable {
-    var name: String
-    var urlLink: String
-}
-
 class EventsViewController: UIViewController {
+    // --- Actions ---
+    // - ShowLoader first request
+    // - HideLoader
+    // - Refresh control
+    // + Tap cell
+    // - Tap favorites
+    // - Show Alert
+
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var tableView: UITableView!
 
-    private var viewModel = EventsViewModel()
-    private var events: [Event] = [Event(name: "First",
-                                 urlLink: "http://google.com"),
-                           Event(name: "Second",
-                                 urlLink: "http://google.com")]
+    private let refreshControl = UIRefreshControl()
+
+    var viewModel = EventsViewModel(eventService: EventService(api: API(networkProvider: NetworkProvider())))
+
+    private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-}
-
-extension EventsViewController: UITableViewDataSource {
-    func numberOfSections(in _: UITableView) -> Int {
-        return 1
+        setupUI()
+        bind()
     }
 
-    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        return events.count
+    // MARK: - Private
+
+    private func setupUI() {
+        refreshControl.tintColor = activityIndicator.tintColor
+        tableView.refreshControl = refreshControl
+        activityIndicator.center = view.center
+        activityIndicator.startAnimating()
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath)
-        cell.textLabel?.text = events[indexPath.row].name
-        cell.detailTextLabel?.text = events[indexPath.row].name
-//        let accessoryView = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-//        accessoryView.setImage(UIImage(named: "star.fill"), for: .normal)
-//        cell.accessoryView = accessoryView
-        return cell
-    }
-}
+    private func bind() {
+        viewModel.output.events
+            .drive(tableView.rx.items(cellIdentifier: "EventCell")) { _, event, cell in
+                cell.textLabel?.text = event.title
+                cell.detailTextLabel?.text = event.start_time
+            }.disposed(by: disposeBag)
 
-extension EventsViewController: UITableViewDelegate {
-    func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(events[indexPath.row].name)
-        if let url = URL(string: events[indexPath.row].urlLink) {
-            UIApplication.shared.open(url)
-        }
+        tableView.rx.modelSelected(Event.self)
+            .bind(to: viewModel.input.selectedItem)
+            .disposed(by: disposeBag)
+
+        tableView.refreshControl?.rx
+            .controlEvent(.valueChanged)
+            .bind(to: viewModel.input.refreshItems)
+            .disposed(by: disposeBag)
+
+        viewModel.output.error
+            .drive(onNext: {
+                self.showAlert(message: $0)
+            }).disposed(by: disposeBag)
+
+        let indicatorAnimating = Driver.merge(viewModel.output.error.map { _ in false },
+                                              viewModel.output.events.map { _ in false })
+
+        indicatorAnimating
+            .drive(activityIndicator.rx.isAnimating)
+            .disposed(by: disposeBag)
+
+        indicatorAnimating
+            .drive(refreshControl.rx.isEnabled)
+            .disposed(by: disposeBag)
     }
 
-    func tableView(_: UITableView, accessoryButtonTappedForRowWith _: IndexPath) {
-        print("AccessoryView")
+    private func showAlert(message: String?) {
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Cancel", style: .cancel)
+        alertController.addAction(action)
+        present(alertController, animated: true)
     }
 }

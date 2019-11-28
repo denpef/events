@@ -1,3 +1,4 @@
+import RxCocoa
 import RxSwift
 
 final class API {
@@ -8,7 +9,7 @@ final class API {
         self.networkProvider = networkProvider
     }
 
-    func getEvents() -> Observable<Result<[Event], NetworkError>> {
+    func getEvents() -> Observable<EventsData> {
         return networkProvider.request(url: eventPath)
     }
 }
