@@ -1,9 +1,11 @@
 import Foundation
 
+/// Required for configuration viewModel
 protocol Configurable {
     func configure(with serviceContainer: ServiceContainerType)
 }
 
+/// Used to store services
 protocol ServiceContainerType {
     var localStorage: LocalStorage { get }
     var eventService: EventService { get }

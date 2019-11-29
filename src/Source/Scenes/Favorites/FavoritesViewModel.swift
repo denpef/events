@@ -2,20 +2,29 @@ import Foundation
 import RxCocoa
 import RxSwift
 
+/// Favorite screen buisness logic
+///
 struct FavoritesViewModel {
     struct Input {
+        /// Tap favorite button action - swaping favorite mark
         let tapFavorite: AnyObserver<Event>
+        /// Action handle cell item selection - open URL in browser
         let selectedItem: AnyObserver<Item>
     }
 
     struct Output {
+        /// Favorite data source
         let items: Driver<[Item]>
     }
 
     var input: Input
     var output: Output
 
+    // MARK: - Private properties
+
     private let disposeBag = DisposeBag()
+
+    // MARK: - Init
 
     init(storage: LocalStorage) {
         let items = storage.output.favoriteRefreshed

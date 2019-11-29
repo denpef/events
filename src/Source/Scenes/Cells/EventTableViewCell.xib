@@ -22,7 +22,7 @@
                             <constraint firstAttribute="height" constant="23" id="qxy-0W-eTk"/>
                             <constraint firstAttribute="width" constant="23" id="uDF-pw-LYQ"/>
                         </constraints>
-                        <state key="normal" image="star" catalog="system"/>
+                        <state key="normal" image="starEmpty"/>
                     </button>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="wsT-6M-i92">
                         <rect key="frame" x="10" y="8" width="353" height="39.5"/>
@@ -64,6 +64,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="star" catalog="system" width="64" height="58"/>
+        <image name="starEmpty" width="64" height="64"/>
     </resources>
 </document>

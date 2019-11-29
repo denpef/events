@@ -2,28 +2,21 @@ import RxCocoa
 import RxSwift
 import UIKit
 
-struct Item {
-    let event: Event
-    let isFavorite: Bool
-    var image: UIImage {
-        if isFavorite {
-            return Asset.starFilled.image
-        } else {
-            return Asset.starEmpty.image
-        }
-    }
-}
-
-extension Item: Equatable {}
-
+/// Event list screen
+///
 class EventsViewController: UIViewController {
+    // MARK: - Outlets
+
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var tableView: UITableView!
 
-    private let refreshControl = UIRefreshControl()
+    // MARK: - Private properties
 
+    private let refreshControl = UIRefreshControl()
     private var viewModel: EventsViewModel!
     private let disposeBag = DisposeBag()
+
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +24,7 @@ class EventsViewController: UIViewController {
         bind()
     }
 
-    // MARK: - Private
+    // MARK: - Private methods
 
     private func setupUI() {
         refreshControl.tintColor = activityIndicator.tintColor
@@ -90,6 +83,8 @@ class EventsViewController: UIViewController {
 }
 
 extension EventsViewController: Configurable {
+    /// Configure viewModel
+    /// - Parameter serviceLocator: Service container
     func configure(with serviceLocator: ServiceContainerType) {
         viewModel = EventsViewModel(eventService: serviceLocator.eventService)
     }

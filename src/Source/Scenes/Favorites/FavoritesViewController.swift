@@ -2,18 +2,27 @@ import RxCocoa
 import RxSwift
 import UIKit
 
+/// Favorites screen
+///
 class FavoritesViewController: UIViewController {
+    // MARK: - Outlets
+
     @IBOutlet var tableView: UITableView!
 
-    var viewModel: FavoritesViewModel!
+    // MARK: - Private properties
 
+    private var viewModel: FavoritesViewModel!
     private let disposeBag = DisposeBag()
+
+    // MARK: - Init
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         bind()
     }
+
+    // MARK: - Private methods
 
     private func setupUI() {
         tableView.register(UINib(nibName: "EventTableViewCell", bundle: nil), forCellReuseIdentifier: "EventCell")
@@ -39,6 +48,8 @@ class FavoritesViewController: UIViewController {
 }
 
 extension FavoritesViewController: Configurable {
+    /// Configure viewModel
+    /// - Parameter serviceLocator: Service container
     func configure(with serviceLocator: ServiceContainerType) {
         viewModel = FavoritesViewModel(storage: serviceLocator.localStorage)
     }

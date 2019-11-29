@@ -1,6 +1,6 @@
 import RxSwift
 
-class Scheduler {
+final class Scheduler {
     static var network: ImmediateSchedulerType = {
         let operationQueue = OperationQueue()
         operationQueue.maxConcurrentOperationCount = 2

@@ -2,54 +2,42 @@ import Foundation
 import RxCocoa
 import RxSwift
 
+/// Keys to save data in UserDefaults
 struct StorageKeys {
     var favorite = "favorite"
     var events = "events"
 }
 
 /// Local cache service
-///
+/// Saves data in UserDefaults
 final class LocalStorage {
+    // MARK: - Nested types
+
     struct Input {
+        /// Update data by events key
         var update: PublishSubject<[Event]>
+        /// Swapping favorite mark (true/false)
         var swapFavoriteMark: PublishSubject<Event>
+        /// Clean all cache - useful in testing
         var cleanAll: AnyObserver<Void>
     }
 
     struct Output {
+        /// Favorite data was refreshed
         var favoriteRefreshed: Observable<Void>
     }
+
+    // MARK: - Pproperties
 
     var input: Input
     var output: Output
 
+    // MARK: - Private properties
+
     private var disposeBag = DisposeBag()
-
-    func getEvents() -> [Event] {
-        let decoder = JSONDecoder()
-        let defaults = UserDefaults.standard
-
-        if let data = defaults.object(forKey: keys.events) as? Data {
-            if let event = try? decoder.decode([Event].self, from: data) {
-                return event
-            }
-        }
-        return []
-    }
-
-    func getFavorites() -> Set<Event> {
-        let decoder = JSONDecoder()
-        let defaults = UserDefaults.standard
-
-        if let data = defaults.object(forKey: keys.favorite) as? Data {
-            if let favorites = try? decoder.decode(Set<Event>.self, from: data) {
-                return favorites
-            }
-        }
-        return Set<Event>()
-    }
-
     private let keys: StorageKeys
+
+    // MARK: - Init
 
     init(with keys: StorageKeys = StorageKeys()) {
         self.keys = keys
@@ -97,5 +85,33 @@ final class LocalStorage {
 
         input = Input(update: update, swapFavoriteMark: swapFavoriteMark, cleanAll: cleanAll.asObserver())
         output = Output(favoriteRefreshed: favoriteRefreshed.asObservable())
+    }
+
+    // MARK: - Methods
+
+    /// Returns current cached event list
+    func getEvents() -> [Event] {
+        let decoder = JSONDecoder()
+        let defaults = UserDefaults.standard
+
+        if let data = defaults.object(forKey: keys.events) as? Data {
+            if let event = try? decoder.decode([Event].self, from: data) {
+                return event
+            }
+        }
+        return []
+    }
+
+    /// Returns current favorite list
+    func getFavorites() -> Set<Event> {
+        let decoder = JSONDecoder()
+        let defaults = UserDefaults.standard
+
+        if let data = defaults.object(forKey: keys.favorite) as? Data {
+            if let favorites = try? decoder.decode(Set<Event>.self, from: data) {
+                return favorites
+            }
+        }
+        return Set<Event>()
     }
 }

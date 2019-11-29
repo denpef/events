@@ -1,28 +1,39 @@
 import RxSwift
 
+/// The service provides the ability to work with a list of events
 final class EventService {
+    // MARK: - Nested types
+
     struct Input {
+        /// Swaping favorite mark (true/false)
         let swapFavoriteMark: AnyObserver<Event>
     }
 
     struct Output {
+        /// Decoded server request data
         let serverEvents: Observable<[Event]>
+        /// Handle network error
         let networkError: Observable<Error>
+        /// Swaping favorite mark (true/false)
         let favorites: Observable<Set<Event>>
     }
+
+    // MARK: - Properties
 
     var input: Input
     var output: Output
 
+    // MARK: - Private properties
+
     private let api: API
     private let disposeBag = DisposeBag()
+
+    // MARK: - Init
 
     init(api: API, storage: LocalStorage) {
         self.api = api
 
         let networkError = PublishSubject<Error>()
-
-//        Observable.combineLatest(api.getEvents(), storage.output.favoriteRefreshed) map {
 
         let serverEvents = api.getEvents()
             .map { $0.events.event }

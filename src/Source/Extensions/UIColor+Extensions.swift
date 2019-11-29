@@ -1,6 +1,5 @@
 import UIKit.UIColor
 
-// swiftlint:disable discouraged_object_literal
 extension UIColor {
     enum Common {
         static var Green: UIColor {

@@ -1,22 +1,37 @@
 import RxCocoa
 import RxSwift
 
+/// Events screen buisness logic
+///
 struct EventsViewModel {
+    // MARK: - Nested types
+
     struct Input {
+        /// Reload action for data source
         let refreshItems: AnyObserver<Void>
+        /// Action handle cell item selection - open URL in browser
         let selectedItem: AnyObserver<Item>
+        /// Tap favorite button action - swaping favorite mark
         let tapFavorite: AnyObserver<Event>
     }
 
     struct Output {
+        /// Events data source
         let items: Driver<[Item]>
+        /// Server error handling
         let error: Driver<String>
     }
+
+    // MARK: - Properties
 
     var input: Input
     var output: Output
 
+    // MARK: - Private properties
+
     private let disposeBag = DisposeBag()
+
+    // MARK: - Init
 
     init(eventService: EventService) {
         let refreshEvents = BehaviorSubject<Void>(value: ())
