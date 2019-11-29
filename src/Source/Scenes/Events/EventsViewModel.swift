@@ -36,7 +36,7 @@ struct EventsViewModel {
 
         let selectEvent = PublishSubject<Item>()
         selectEvent.subscribe(onNext: { item in
-            OpenURLHelper.openLink(by: item.event.url)
+            OpenURLHelper.shared.openLink(by: item.event.url)
         }).disposed(by: disposeBag)
 
         Observable<Int>.timer(3600, period: 3600, scheduler: MainScheduler.instance)

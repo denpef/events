@@ -24,7 +24,7 @@ struct FavoritesViewModel {
 
         let selectEvent = PublishSubject<Item>()
         selectEvent.subscribe(onNext: { item in
-            OpenURLHelper.openLink(by: item.event.url)
+            OpenURLHelper.shared.openLink(by: item.event.url)
         }).disposed(by: disposeBag)
 
         let tapFavorite: AnyObserver<Event> = storage.input.swapFavoriteMark.asObserver()

@@ -88,6 +88,10 @@ class FavoritesViewModelTests: XCTestCase {
             .bind(to: storage.input.swapFavoriteMark)
             .disposed(by: disposeBag)
 
+        scheduler.createColdObservable([.next(10, expectedItem)])
+            .bind(to: sut.input.selectedItem)
+            .disposed(by: disposeBag)
+
         scheduler.createColdObservable([.next(20, expectedEvent)])
             .bind(to: sut.input.tapFavorite)
             .disposed(by: disposeBag)
@@ -125,29 +129,19 @@ class FavoritesViewModelTests: XCTestCase {
                                        .next(10, [expectedItemOne]),
                                        .next(20, [expectedItemTwo, expectedItemOne]),
                                        .next(40, [expectedItemThree, expectedItemTwo, expectedItemOne])],
-                       "Expected Items doesn't match")
+                       "Expected item chain doesn't match")
     }
 
-//        let expectedEvent = Event(id: "test_id", title: "test_title", start_time: "2019-01-12 10:05:00", url: "empty")
-//        let expectedItem = Item(event: expectedEvent, isFavorite: true)
-    ////        let expectedItems: [Item] = [Item(event: event, isFavorite: true)]
-//
-//        // create scheduler action
-//        let action = scheduler.createObserver(Event.self)
-//
-    ////        AnyObserver
-    ////        // bind the result
-    ////        sut.input.tapFavorite
-    ////            .bind(to: action)
-    ////            .disposed(by: disposeBag)
-    ////
-    ////        // mock a reload
-    ////        scheduler.createColdObservable([.next(15, expectedEvent), .next(20, expectedEvent)])
-    ////            .bind(to: sut.input.tapFavorite)
-    ////            .disposed(by: disposeBag)
-    ////
-    ////        scheduler.start()
-    ////
-    ////        XCTAssertEqual(action.events, [.next(15, expectedEvent), .next(20, expectedEvent)])
-//    }
+    func testSelectionItem() {
+        let expectedEvent = Event(id: "test_id_1", title: "test_title", start_time: "2019-01-12 10:05:00", url: "empty")
+        let expectedItem = Item(event: expectedEvent, isFavorite: true)
+
+        scheduler.createColdObservable([.next(10, expectedItem)])
+            .bind(to: sut.input.selectedItem)
+            .disposed(by: disposeBag)
+
+        scheduler.start()
+
+        XCTAssertEqual(OpenURLHelper.shared.lastURL, expectedEvent.url, "Expected URL doesn't match")
+    }
 }
