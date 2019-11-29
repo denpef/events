@@ -1,39 +1,42 @@
+import RxCocoa
+import RxSwift
 import UIKit
 
 class FavoritesViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
 
-    private var data = ["1", "2"]
-    private var storage = LocalStorage()
+    var viewModel: FavoritesViewModel!
+
+    private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        bind()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        print(storage.getFavorites())
+    private func bind() {
+        viewModel.output.items
+            .drive(tableView.rx.items(cellIdentifier: "EventCell", cellType: EventTableViewCell.self)) { [weak self] _, item, cell in
+                guard let self = self else {
+                    return
+                }
+                cell.titleLabel.text = item.event.title
+                cell.subtitleLabel.text = item.event.start_time
+                cell.titleLabel.textColor = item.isFavorite ? UIColor.red : UIColor.black
+                cell.favoriteButton.rx.tap
+                    .map { item.event }
+                    .bind(to: self.viewModel.input.tapFavorite)
+                    .disposed(by: cell.disposeBag)
+            }.disposed(by: disposeBag)
+
+        tableView.rx.modelSelected(Item.self)
+            .bind(to: viewModel.input.selectedItem)
+            .disposed(by: disposeBag)
     }
 }
 
-extension FavoritesViewController: UITableViewDataSource {
-    func numberOfSections(in _: UITableView) -> Int {
-        return 1
-    }
-
-    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        return data.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath)
-        cell.textLabel?.text = data[indexPath.row]
-        return cell
-    }
-}
-
-extension FavoritesViewController: UITableViewDelegate {
-    func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath)
+extension FavoritesViewController: Configurable {
+    func configure(with serviceLocator: ServiceContainerType) {
+        viewModel = FavoritesViewModel(storage: serviceLocator.localStorage)
     }
 }

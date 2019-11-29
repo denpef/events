@@ -15,3 +15,15 @@ struct Event: Codable {
 }
 
 extension Event: Hashable {}
+
+extension Event: Comparable {
+    static func < (lhs: Event, rhs: Event) -> Bool {
+        if lhs.title < rhs.title {
+            return true
+        } else if lhs.start_time < rhs.start_time {
+            return true
+        } else {
+            return lhs.id < rhs.id
+        }
+    }
+}

@@ -14,8 +14,7 @@ class EventsViewController: UIViewController {
 
     private let refreshControl = UIRefreshControl()
 
-    private var viewModel = EventsViewModel(eventService: EventService(api: API(networkProvider: NetworkProvider()),
-                                                                       storage: LocalStorage()))
+    private var viewModel: EventsViewModel!
 
     private let disposeBag = DisposeBag()
 
@@ -23,6 +22,11 @@ class EventsViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         bind()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.input.viewDidAppear.on(.next(()))
     }
 
     // MARK: - Private
@@ -49,7 +53,7 @@ class EventsViewController: UIViewController {
                     .disposed(by: cell.disposeBag)
             }.disposed(by: disposeBag)
 
-        tableView.rx.modelSelected(Event.self)
+        tableView.rx.modelSelected(Item.self)
             .bind(to: viewModel.input.selectedItem)
             .disposed(by: disposeBag)
 
@@ -80,5 +84,11 @@ class EventsViewController: UIViewController {
         let action = UIAlertAction(title: "Cancel", style: .cancel)
         alertController.addAction(action)
         present(alertController, animated: true)
+    }
+}
+
+extension EventsViewController: Configurable {
+    func configure(with serviceLocator: ServiceContainerType) {
+        viewModel = EventsViewModel(eventService: serviceLocator.eventService)
     }
 }
