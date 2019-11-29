@@ -1,12 +1,17 @@
 import RxSwift
 
 final class EventService {
+    struct Input {
+        let swapFavoriteMark: AnyObserver<Event>
+    }
+
     struct Output {
         let serverEvents: Observable<[Event]>
         let networkError: Observable<Error>
     }
 
-    var output: EventService.Output
+    var input: Input
+    var output: Output
 
     private let api: API
     private let disposeBag = DisposeBag()
@@ -26,6 +31,8 @@ final class EventService {
         serverEvents
             .bind(to: storage.input.update)
             .disposed(by: disposeBag)
+
+        input = Input(swapFavoriteMark: storage.input.swapFavoriteMark.asObserver())
 
         output = Output(serverEvents: serverEvents,
                         networkError: networkError.asObservable())

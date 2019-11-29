@@ -27,6 +27,7 @@
 		BE1628CC238EFA2F00CB3E99 /* OpenURLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1628CB238EFA2F00CB3E99 /* OpenURLHelper.swift */; };
 		BE1628CF2390215800CB3E99 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1628CE2390215800CB3E99 /* Events.swift */; };
 		BE1628D2239063A400CB3E99 /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1628D1239063A400CB3E99 /* LocalStorage.swift */; };
+		BE1628D7239153AB00CB3E99 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1628D6239153AB00CB3E99 /* EventTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		BE1628CB238EFA2F00CB3E99 /* OpenURLHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenURLHelper.swift; sourceTree = "<group>"; };
 		BE1628CE2390215800CB3E99 /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		BE1628D1239063A400CB3E99 /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
+		BE1628D6239153AB00CB3E99 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		F2E26DF3958D3209373EF6C0 /* Pods-EventsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventsTests.debug.xcconfig"; path = "Target Support Files/Pods-EventsTests/Pods-EventsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FAC8B8A0ACFA87FE1B537616 /* Pods-Events.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Events.debug.xcconfig"; path = "Target Support Files/Pods-Events/Pods-Events.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -175,6 +177,7 @@
 		BE1628B5238EC42A00CB3E99 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				BE1628D32391531D00CB3E99 /* Cells */,
 				BE1628BC238EDD1000CB3E99 /* Events */,
 				BE1628BB238EDD0600CB3E99 /* Favorites */,
 			);
@@ -242,6 +245,14 @@
 				BE1628BD238EDFC600CB3E99 /* NetworkProvider.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		BE1628D32391531D00CB3E99 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				BE1628D6239153AB00CB3E99 /* EventTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -471,6 +482,7 @@
 				BE1628CF2390215800CB3E99 /* Events.swift in Sources */,
 				BE1628D2239063A400CB3E99 /* LocalStorage.swift in Sources */,
 				BE1628BA238EDD0200CB3E99 /* FavoritesViewModel.swift in Sources */,
+				BE1628D7239153AB00CB3E99 /* EventTableViewCell.swift in Sources */,
 				BE162891238EADD700CB3E99 /* EventsViewController.swift in Sources */,
 				BE1628B8238EDCF300CB3E99 /* EventsViewModel.swift in Sources */,
 				BE1628C7238EEF6000CB3E99 /* Scheduler.swift in Sources */,

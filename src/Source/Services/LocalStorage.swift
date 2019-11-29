@@ -26,7 +26,6 @@ final class LocalStorage {
     private var disposeBag = DisposeBag()
 
     func getEvents() -> [Event] {
-        let encoder = JSONEncoder()
         let decoder = JSONDecoder()
         let defaults = UserDefaults.standard
 
@@ -39,7 +38,6 @@ final class LocalStorage {
     }
 
     func getFavorites() -> Set<Event> {
-        let encoder = JSONEncoder()
         let decoder = JSONDecoder()
         let defaults = UserDefaults.standard
 
@@ -59,30 +57,8 @@ final class LocalStorage {
         let decoder = JSONDecoder()
         let defaults = UserDefaults.standard
 
-//        func getEvents() -> [Event] {
-//            if let data = defaults.object(forKey: keys.events) as? Data {
-//                if let event = try? decoder.decode([Event].self, from: data) {
-//                    return event
-//                }
-//            }
-//            return []
-//        }
-//
-//        func getFavorites() -> Set<Event> {
-//            if let data = defaults.object(forKey: keys.favorite) as? Data {
-//                if let favorites = try? decoder.decode(Set<Event>.self, from: data) {
-//                    return favorites
-//                }
-//            }
-//            return Set<Event>()
-//        }
-//
-//        let events = Observable.of(getEvents())
-//        let favorite = Observable.of(getFavorites())
-
         let swapFavoriteMark = PublishSubject<Event>()
         swapFavoriteMark.subscribe(onNext: { event in
-            var favoriteSet = Set<Event>()
             if let data = defaults.object(forKey: keys.favorite) as? Data {
                 if var favoriteSet = try? decoder.decode(Set<Event>.self, from: data) {
                     if favoriteSet.contains(event) {
@@ -90,12 +66,16 @@ final class LocalStorage {
                     } else {
                         favoriteSet.insert(event)
                     }
+                    if let encoded = try? encoder.encode(favoriteSet) {
+                        defaults.set(encoded, forKey: keys.favorite)
+                    }
                 }
             } else {
+                var favoriteSet = Set<Event>()
                 favoriteSet.insert(event)
-            }
-            if let encoded = try? encoder.encode(favoriteSet) {
-                defaults.set(encoded, forKey: keys.favorite)
+                if let encoded = try? encoder.encode(favoriteSet) {
+                    defaults.set(encoded, forKey: keys.favorite)
+                }
             }
         }).disposed(by: disposeBag)
 
@@ -107,6 +87,5 @@ final class LocalStorage {
         }).disposed(by: disposeBag)
 
         input = Input(update: update, swapFavoriteMark: swapFavoriteMark)
-//        output = Output(favorite: favorite, events: events)
     }
 }

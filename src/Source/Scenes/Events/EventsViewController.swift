@@ -31,9 +31,17 @@ class EventsViewController: UIViewController {
 
     private func bind() {
         viewModel.output.items
-            .drive(tableView.rx.items(cellIdentifier: "EventCell")) { _, event, cell in
-                cell.textLabel?.text = event.title
-                cell.detailTextLabel?.text = event.start_time
+            .drive(tableView.rx.items(cellIdentifier: "EventCell", cellType: EventTableViewCell.self)) { [weak self] _, event, cell in
+                guard let self = self else {
+                    return
+                }
+                cell.titleLabel.text = event.title
+                cell.subtitleLabel.text = event.start_time
+                cell.favoriteButton.rx.tap.debug("fav tap")
+                    .map { event }
+                    .bind(to: self.viewModel.input.tapFavorite)
+                    .disposed(by: cell.disposeBag)
+
             }.disposed(by: disposeBag)
 
         tableView.rx.modelSelected(Event.self)

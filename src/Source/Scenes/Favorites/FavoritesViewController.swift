@@ -4,10 +4,15 @@ class FavoritesViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
 
     private var data = ["1", "2"]
+    private var storage = LocalStorage()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print(storage.getFavorites())
     }
 }
 
