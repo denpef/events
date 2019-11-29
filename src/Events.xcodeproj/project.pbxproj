@@ -29,6 +29,7 @@
 		BE1628D2239063A400CB3E99 /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1628D1239063A400CB3E99 /* LocalStorage.swift */; };
 		BE1628D7239153AB00CB3E99 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1628D6239153AB00CB3E99 /* EventTableViewCell.swift */; };
 		BE1628D9239171AE00CB3E99 /* ServiceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1628D8239171AE00CB3E99 /* ServiceContainer.swift */; };
+		BE1628DB23917C7000CB3E99 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE1628DA23917C7000CB3E99 /* EventTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		BE1628D1239063A400CB3E99 /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
 		BE1628D6239153AB00CB3E99 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		BE1628D8239171AE00CB3E99 /* ServiceContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceContainer.swift; sourceTree = "<group>"; };
+		BE1628DA23917C7000CB3E99 /* EventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventTableViewCell.xib; sourceTree = "<group>"; };
 		F2E26DF3958D3209373EF6C0 /* Pods-EventsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventsTests.debug.xcconfig"; path = "Target Support Files/Pods-EventsTests/Pods-EventsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FAC8B8A0ACFA87FE1B537616 /* Pods-Events.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Events.debug.xcconfig"; path = "Target Support Files/Pods-Events/Pods-Events.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -254,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				BE1628D6239153AB00CB3E99 /* EventTableViewCell.swift */,
+				BE1628DA23917C7000CB3E99 /* EventTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE1628DB23917C7000CB3E99 /* EventTableViewCell.xib in Resources */,
 				BE162899238EADD800CB3E99 /* LaunchScreen.storyboard in Resources */,
 				BE162896238EADD800CB3E99 /* Assets.xcassets in Resources */,
 				BE162894238EADD700CB3E99 /* Main.storyboard in Resources */,

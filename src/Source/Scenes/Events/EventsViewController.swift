@@ -34,6 +34,7 @@ class EventsViewController: UIViewController {
     private func setupUI() {
         refreshControl.tintColor = activityIndicator.tintColor
         tableView.refreshControl = refreshControl
+        tableView.register(UINib(nibName: "EventTableViewCell", bundle: nil), forCellReuseIdentifier: "EventCell")
         activityIndicator.center = view.center
         activityIndicator.startAnimating()
     }

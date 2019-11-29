@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="EventCell" id="Tbx-Su-l1N" customClass="EventTableViewCell" customModule="Events">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="55.5"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tbx-Su-l1N" id="rZV-O5-ftb">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="55.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rNj-xW-Nii">
+                        <rect key="frame" x="371" y="16.5" width="23" height="23"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="23" id="qxy-0W-eTk"/>
+                            <constraint firstAttribute="width" constant="23" id="uDF-pw-LYQ"/>
+                        </constraints>
+                        <state key="normal" image="star" catalog="system"/>
+                    </button>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="wsT-6M-i92">
+                        <rect key="frame" x="10" y="8" width="353" height="39.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64i-aS-mP8">
+                                <rect key="frame" x="0.0" y="0.0" width="353" height="18.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GdS-is-8gS">
+                                <rect key="frame" x="0.0" y="22.5" width="353" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="9EA-2m-SII"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="wsT-6M-i92" firstAttribute="top" secondItem="rZV-O5-ftb" secondAttribute="top" constant="8" id="0Fg-ig-X1j"/>
+                    <constraint firstAttribute="trailing" secondItem="rNj-xW-Nii" secondAttribute="trailing" constant="20" id="4MK-bU-w3e"/>
+                    <constraint firstItem="rNj-xW-Nii" firstAttribute="centerY" secondItem="rZV-O5-ftb" secondAttribute="centerY" id="ikv-7G-wZQ"/>
+                    <constraint firstItem="rNj-xW-Nii" firstAttribute="leading" secondItem="wsT-6M-i92" secondAttribute="trailing" constant="8" id="oG1-wX-c2a"/>
+                    <constraint firstItem="wsT-6M-i92" firstAttribute="leading" secondItem="rZV-O5-ftb" secondAttribute="leading" constant="10" id="p7G-B2-F1S"/>
+                    <constraint firstAttribute="bottom" secondItem="wsT-6M-i92" secondAttribute="bottom" constant="8" id="qnK-1J-bCD"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="tintColor" red="0.076982535419999998" green="0.48297739029999998" blue="0.1741472781" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <connections>
+                <outlet property="favoriteButton" destination="rNj-xW-Nii" id="G2n-kJ-Y9W"/>
+                <outlet property="subtitleLabel" destination="GdS-is-8gS" id="hFI-IB-oLL"/>
+                <outlet property="titleLabel" destination="64i-aS-mP8" id="QnD-yP-cnI"/>
+            </connections>
+            <point key="canvasLocation" x="138" y="210"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="star" catalog="system" width="64" height="58"/>
+    </resources>
+</document>
