@@ -1,45 +1,33 @@
 import RxSwift
 
 final class EventService {
-    struct Input {
-        let refreshEvents: AnyObserver<Void>
-        let swapFavoriteMark: AnyObserver<Event>
-    }
-
     struct Output {
-        let serverEvents: Observable<EventsData>
+        let serverEvents: Observable<[Event]>
+        let networkError: Observable<Error>
     }
 
-    var input: EventService.Input
     var output: EventService.Output
 
     private let api: API
     private let disposeBag = DisposeBag()
 
-    init(api: API) {
+    init(api: API, storage: LocalStorage) {
         self.api = api
 
-        let refreshEvents = BehaviorSubject<Void>(value: ())
+        let networkError = PublishSubject<Error>()
 
-        let swapFavoriteMark = PublishSubject<Event>()
-        swapFavoriteMark.subscribe(onNext: { event in
-            var favoriteSet = UserDefaults.standard.object(forKey: "favorite") as? Set<Event> ?? Set<Event>()
-            if favoriteSet.contains(event) {
-                favoriteSet.remove(event)
-            } else {
-                favoriteSet.insert(event)
+        let serverEvents = api.getEvents()
+            .map { $0.events.event }
+            .catchError { error -> Observable<[Event]> in
+                networkError.on(.next(error))
+                return Observable.of(storage.getEvents())
             }
-            UserDefaults.standard.set(favoriteSet, forKey: "favorite")
-        }).disposed(by: disposeBag)
 
-        let serverEvents = refreshEvents.flatMapLatest { api.getEvents() }
+        serverEvents
+            .bind(to: storage.input.update)
+            .disposed(by: disposeBag)
 
-        input = Input(refreshEvents: refreshEvents.asObserver(),
-                      swapFavoriteMark: swapFavoriteMark.asObserver())
-        output = Output(serverEvents: serverEvents)
-    }
-
-    private var favorite: Set<Event> {
-        return UserDefaults.standard.object(forKey: "favorite") as? Set<Event> ?? Set<Event>()
+        output = Output(serverEvents: serverEvents,
+                        networkError: networkError.asObservable())
     }
 }

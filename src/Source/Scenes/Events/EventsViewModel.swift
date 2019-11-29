@@ -3,51 +3,54 @@ import RxSwift
 
 struct EventsViewModel {
     struct Input {
-        let refreshItems: PublishSubject<Void>
+        let refreshItems: AnyObserver<Void>
         let selectedItem: AnyObserver<Event>
         let tapFavorite: AnyObserver<Event>
     }
 
     struct Output {
-        let events: Driver<[Event]>
+        let items: Driver<[Event]>
         let error: Driver<String>
     }
 
     var input: Input
     var output: Output
 
-    private var eventService: EventService
     private let disposeBag = DisposeBag()
 
     init(eventService: EventService) {
-        self.eventService = eventService
+        let refreshEvents = BehaviorSubject<Void>(value: ())
+        let error = eventService.output.networkError
+            .map { _ in
+                "Network error. Please try later"
+            }
 
-        let events: Driver<[Event]> = self.eventService.output.serverEvents
-            .map { $0.events.event }
-            .asDriver(onErrorJustReturn: [])
+        let serverIvents: Observable<[Event]> = refreshEvents
+            .flatMapLatest {
+                eventService.output.serverEvents
+            }
+
+        let items: Driver<[Event]> = serverIvents.asDriver(onErrorJustReturn: [])
+
+//        serverIvents.subscribe(onNext: { newEventList in
+//            storage.input.update.onNext(newEventList)
+//        }).disposed(by: disposeBag)
 
         let updateFavoriteMark = PublishSubject<Event>()
-        updateFavoriteMark
-            .bind(to: eventService.input.swapFavoriteMark)
-            .disposed(by: disposeBag)
+//        updateFavoriteMark
+//            .bind(to: storage.input.swapFavoriteMark)
+//            .disposed(by: disposeBag)
 
         let selectEvent = PublishSubject<Event>()
         selectEvent.subscribe(onNext: { event in
             OpenURLHelper.openLink(by: event.url)
         }).disposed(by: disposeBag)
 
-        let refreshEvents = PublishSubject<Void>()
-        refreshEvents
-            .bind(to: eventService.input.refreshEvents)
-            .disposed(by: disposeBag)
-
-        let error = PublishSubject<String>()
-
-        input = Input(refreshItems: refreshEvents,
+        input = Input(refreshItems: refreshEvents.asObserver(),
                       selectedItem: selectEvent.asObserver(),
                       tapFavorite: updateFavoriteMark.asObserver())
 
-        output = Output(events: events,
+        output = Output(items: items, // .asDriver(onErrorJustReturn: []),
                         error: error.asDriver(onErrorJustReturn: "Unknown error"))
     }
 }

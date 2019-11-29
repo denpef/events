@@ -1,12 +1,12 @@
-struct EventList: Decodable {
+struct EventList: Codable {
     let event: [Event]
 }
 
-struct EventsData: Decodable {
+struct EventsData: Codable {
     let events: EventList
 }
 
-struct Event: Decodable {
+struct Event: Codable {
     var id: String
     var title: String
     // swiftlint:disable identifier_name

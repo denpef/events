@@ -4,20 +4,13 @@ import RxSwift
 import UIKit
 
 class EventsViewController: UIViewController {
-    // --- Actions ---
-    // - ShowLoader first request
-    // - HideLoader
-    // - Refresh control
-    // + Tap cell
-    // - Tap favorites
-    // - Show Alert
-
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var tableView: UITableView!
 
     private let refreshControl = UIRefreshControl()
 
-    var viewModel = EventsViewModel(eventService: EventService(api: API(networkProvider: NetworkProvider())))
+    var viewModel = EventsViewModel(eventService: EventService(api: API(networkProvider: NetworkProvider()),
+                                                               storage: LocalStorage()))
 
     private let disposeBag = DisposeBag()
 
@@ -37,7 +30,7 @@ class EventsViewController: UIViewController {
     }
 
     private func bind() {
-        viewModel.output.events
+        viewModel.output.items
             .drive(tableView.rx.items(cellIdentifier: "EventCell")) { _, event, cell in
                 cell.textLabel?.text = event.title
                 cell.detailTextLabel?.text = event.start_time
@@ -58,7 +51,7 @@ class EventsViewController: UIViewController {
             }).disposed(by: disposeBag)
 
         let indicatorAnimating = Driver.merge(viewModel.output.error.map { _ in false },
-                                              viewModel.output.events.map { _ in false })
+                                              viewModel.output.items.map { _ in false })
 
         indicatorAnimating.drive(onNext: {
             print($0)
