@@ -3,14 +3,19 @@ import RxDataSources
 import RxSwift
 import UIKit
 
+struct Item {
+    let event: Event
+    let isFavorite: Bool
+}
+
 class EventsViewController: UIViewController {
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var tableView: UITableView!
 
     private let refreshControl = UIRefreshControl()
 
-    var viewModel = EventsViewModel(eventService: EventService(api: API(networkProvider: NetworkProvider()),
-                                                               storage: LocalStorage()))
+    private var viewModel = EventsViewModel(eventService: EventService(api: API(networkProvider: NetworkProvider()),
+                                                                       storage: LocalStorage()))
 
     private let disposeBag = DisposeBag()
 
@@ -31,17 +36,17 @@ class EventsViewController: UIViewController {
 
     private func bind() {
         viewModel.output.items
-            .drive(tableView.rx.items(cellIdentifier: "EventCell", cellType: EventTableViewCell.self)) { [weak self] _, event, cell in
+            .drive(tableView.rx.items(cellIdentifier: "EventCell", cellType: EventTableViewCell.self)) { [weak self] _, item, cell in
                 guard let self = self else {
                     return
                 }
-                cell.titleLabel.text = event.title
-                cell.subtitleLabel.text = event.start_time
-                cell.favoriteButton.rx.tap.debug("fav tap")
-                    .map { event }
+                cell.titleLabel.text = item.event.title
+                cell.subtitleLabel.text = item.event.start_time
+                cell.titleLabel.textColor = item.isFavorite ? UIColor.red : UIColor.black
+                cell.favoriteButton.rx.tap
+                    .map { item.event }
                     .bind(to: self.viewModel.input.tapFavorite)
                     .disposed(by: cell.disposeBag)
-
             }.disposed(by: disposeBag)
 
         tableView.rx.modelSelected(Event.self)
@@ -60,10 +65,6 @@ class EventsViewController: UIViewController {
 
         let indicatorAnimating = Driver.merge(viewModel.output.error.map { _ in false },
                                               viewModel.output.items.map { _ in false })
-
-        indicatorAnimating.drive(onNext: {
-            print($0)
-        }).disposed(by: disposeBag)
 
         indicatorAnimating
             .drive(activityIndicator.rx.isAnimating)

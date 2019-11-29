@@ -15,13 +15,12 @@ final class LocalStorage {
         var swapFavoriteMark: PublishSubject<Event>
     }
 
-//    struct Output {
-//        var favorite: Observable<Set<Event>>
-//        var events: Observable<[Event]>
-//    }
+    struct Output {
+        var favoriteRefreshed: Observable<Void>
+    }
 
     var input: Input
-//    var output: Output
+    var output: Output
 
     private var disposeBag = DisposeBag()
 
@@ -57,6 +56,8 @@ final class LocalStorage {
         let decoder = JSONDecoder()
         let defaults = UserDefaults.standard
 
+        let favoriteRefreshed = BehaviorSubject<Void>(value: ())
+
         let swapFavoriteMark = PublishSubject<Event>()
         swapFavoriteMark.subscribe(onNext: { event in
             if let data = defaults.object(forKey: keys.favorite) as? Data {
@@ -77,6 +78,7 @@ final class LocalStorage {
                     defaults.set(encoded, forKey: keys.favorite)
                 }
             }
+            favoriteRefreshed.onNext(())
         }).disposed(by: disposeBag)
 
         let update = PublishSubject<[Event]>()
@@ -87,5 +89,6 @@ final class LocalStorage {
         }).disposed(by: disposeBag)
 
         input = Input(update: update, swapFavoriteMark: swapFavoriteMark)
+        output = Output(favoriteRefreshed: favoriteRefreshed.asObservable())
     }
 }

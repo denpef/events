@@ -8,6 +8,7 @@ final class EventService {
     struct Output {
         let serverEvents: Observable<[Event]>
         let networkError: Observable<Error>
+        let favorites: Observable<Set<Event>>
     }
 
     var input: Input
@@ -21,6 +22,8 @@ final class EventService {
 
         let networkError = PublishSubject<Error>()
 
+//        Observable.combineLatest(api.getEvents(), storage.output.favoriteRefreshed) map {
+
         let serverEvents = api.getEvents()
             .map { $0.events.event }
             .catchError { error -> Observable<[Event]> in
@@ -32,9 +35,13 @@ final class EventService {
             .bind(to: storage.input.update)
             .disposed(by: disposeBag)
 
+        let favorites: Observable<Set<Event>> = storage.output.favoriteRefreshed
+            .map { storage.getFavorites() }
+
         input = Input(swapFavoriteMark: storage.input.swapFavoriteMark.asObserver())
 
         output = Output(serverEvents: serverEvents,
-                        networkError: networkError.asObservable())
+                        networkError: networkError.asObservable(),
+                        favorites: favorites)
     }
 }

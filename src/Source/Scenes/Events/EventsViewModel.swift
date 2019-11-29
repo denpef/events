@@ -9,7 +9,7 @@ struct EventsViewModel {
     }
 
     struct Output {
-        let items: Driver<[Event]>
+        let items: Driver<[Item]>
         let error: Driver<String>
     }
 
@@ -25,14 +25,16 @@ struct EventsViewModel {
                 "Network error. Please try later"
             }
 
-        let serverIvents: Observable<[Event]> = refreshEvents
+        let serverEvents: Observable<[Event]> = refreshEvents
             .flatMapLatest {
                 eventService.output.serverEvents
             }
 
-        let items: Driver<[Event]> = serverIvents.asDriver(onErrorJustReturn: [])
+        let items: Driver<[Item]> = Observable.combineLatest(serverEvents, eventService.output.favorites) { events, favorites in
+            events.map { Item(event: $0, isFavorite: favorites.contains($0)) }
+        }.asDriver(onErrorJustReturn: [])
 
-//        serverIvents.subscribe(onNext: { newEventList in
+//        serverEvents.subscribe(onNext: { newEventList in
 //            storage.input.update.onNext(newEventList)
 //        }).disposed(by: disposeBag)
 
