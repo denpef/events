@@ -27,7 +27,9 @@ struct FavoritesViewModel {
             OpenURLHelper.openLink(by: item.event.url)
         }).disposed(by: disposeBag)
 
-        input = Input(tapFavorite: storage.input.swapFavoriteMark.asObserver(),
+        let tapFavorite: AnyObserver<Event> = storage.input.swapFavoriteMark.asObserver()
+
+        input = Input(tapFavorite: tapFavorite,
                       selectedItem: selectEvent.asObserver())
         output = Output(items: items)
     }

@@ -25,9 +25,7 @@ class FavoritesViewController: UIViewController {
                 guard let self = self else {
                     return
                 }
-                cell.titleLabel.text = item.event.title
-                cell.subtitleLabel.text = item.event.start_time
-                cell.titleLabel.textColor = item.isFavorite ? UIColor.red : UIColor.black
+                cell.configure(with: item)
                 cell.favoriteButton.rx.tap
                     .map { item.event }
                     .bind(to: self.viewModel.input.tapFavorite)

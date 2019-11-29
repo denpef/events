@@ -5,7 +5,6 @@ use_frameworks!
 def shared_pods
   pod 'RxSwift', '~> 4.4'
   pod 'RxCocoa', '~> 4.4'
-  pod 'RxDataSources', '~> 3.1'
 end
 
 target 'Events' do
@@ -14,4 +13,8 @@ end
   
 target 'EventsTests' do
   shared_pods
+  
+  # Pods for testing
+  pod 'RxBlocking', '= 4.4.2'
+  pod 'RxTest', '= 4.4.2'
 end

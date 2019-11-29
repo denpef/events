@@ -14,7 +14,7 @@
 		BE162894238EADD700CB3E99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE162892238EADD700CB3E99 /* Main.storyboard */; };
 		BE162896238EADD800CB3E99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE162895238EADD800CB3E99 /* Assets.xcassets */; };
 		BE162899238EADD800CB3E99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE162897238EADD800CB3E99 /* LaunchScreen.storyboard */; };
-		BE1628A4238EADD800CB3E99 /* EventsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1628A3238EADD800CB3E99 /* EventsTests.swift */; };
+		BE1628A4238EADD800CB3E99 /* FavoritesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1628A3238EADD800CB3E99 /* FavoritesViewModelTests.swift */; };
 		BE1628AF238EAEE000CB3E99 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1628AE238EAEE000CB3E99 /* FavoritesViewController.swift */; };
 		BE1628B8238EDCF300CB3E99 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1628B7238EDCF300CB3E99 /* EventsViewModel.swift */; };
 		BE1628BA238EDD0200CB3E99 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1628B9238EDD0200CB3E99 /* FavoritesViewModel.swift */; };
@@ -30,6 +30,9 @@
 		BE1628D7239153AB00CB3E99 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1628D6239153AB00CB3E99 /* EventTableViewCell.swift */; };
 		BE1628D9239171AE00CB3E99 /* ServiceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1628D8239171AE00CB3E99 /* ServiceContainer.swift */; };
 		BE1628DB23917C7000CB3E99 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE1628DA23917C7000CB3E99 /* EventTableViewCell.xib */; };
+		BE1628E323919FF200CB3E99 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1628E223919FF200CB3E99 /* Assets.swift */; };
+		BE1628E52391A2D700CB3E99 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1628E42391A2D700CB3E99 /* UIButton+Extensions.swift */; };
+		BE1628E72391A2F900CB3E99 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1628E62391A2F900CB3E99 /* UIColor+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,7 +58,7 @@
 		BE162898238EADD800CB3E99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BE16289A238EADD800CB3E99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE16289F238EADD800CB3E99 /* EventsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE1628A3238EADD800CB3E99 /* EventsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTests.swift; sourceTree = "<group>"; };
+		BE1628A3238EADD800CB3E99 /* FavoritesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModelTests.swift; sourceTree = "<group>"; };
 		BE1628A5238EADD800CB3E99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE1628AE238EAEE000CB3E99 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavoritesViewController.swift; path = Source/Scenes/Favorites/FavoritesViewController.swift; sourceTree = SOURCE_ROOT; };
 		BE1628B7238EDCF300CB3E99 /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
@@ -72,6 +75,9 @@
 		BE1628D6239153AB00CB3E99 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		BE1628D8239171AE00CB3E99 /* ServiceContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceContainer.swift; sourceTree = "<group>"; };
 		BE1628DA23917C7000CB3E99 /* EventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventTableViewCell.xib; sourceTree = "<group>"; };
+		BE1628E223919FF200CB3E99 /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		BE1628E42391A2D700CB3E99 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
+		BE1628E62391A2F900CB3E99 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		F2E26DF3958D3209373EF6C0 /* Pods-EventsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventsTests.debug.xcconfig"; path = "Target Support Files/Pods-EventsTests/Pods-EventsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FAC8B8A0ACFA87FE1B537616 /* Pods-Events.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Events.debug.xcconfig"; path = "Target Support Files/Pods-Events/Pods-Events.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -152,7 +158,7 @@
 		BE1628A2238EADD800CB3E99 /* EventsTests */ = {
 			isa = PBXGroup;
 			children = (
-				BE1628A3238EADD800CB3E99 /* EventsTests.swift */,
+				BE1628A3238EADD800CB3E99 /* FavoritesViewModelTests.swift */,
 				BE1628A5238EADD800CB3E99 /* Info.plist */,
 			);
 			path = EventsTests;
@@ -161,7 +167,7 @@
 		BE1628B3238EC3D400CB3E99 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				BE162895238EADD800CB3E99 /* Assets.xcassets */,
+				BE1628E123919FE800CB3E99 /* Assets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -222,6 +228,8 @@
 			isa = PBXGroup;
 			children = (
 				BE1628C2238EEF1700CB3E99 /* DateFormatter+Extensions.swift */,
+				BE1628E42391A2D700CB3E99 /* UIButton+Extensions.swift */,
+				BE1628E62391A2F900CB3E99 /* UIColor+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -261,6 +269,15 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		BE1628E123919FE800CB3E99 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				BE162895238EADD800CB3E99 /* Assets.xcassets */,
+				BE1628E223919FF200CB3E99 /* Assets.swift */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -275,6 +292,7 @@
 				BE1628B1238EBC9500CB3E99 /* SwiftFormat */,
 				BE1628B2238EBCB800CB3E99 /* SwiftLint */,
 				E9FE498376FF1536F2484608 /* [CP] Embed Pods Frameworks */,
+				BE1628E023919FD100CB3E99 /* SwiftGen */,
 			);
 			buildRules = (
 			);
@@ -462,6 +480,24 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n    if which swiftlint >/dev/null; then\n        swiftlint\n    else\n        echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n    fi\nfi\n";
 		};
+		BE1628E023919FD100CB3E99 /* SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftGen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftgen >/dev/null; then\n    swiftgen xcassets -t swift4 -o ${SRCROOT}/Resources/Assets/Assets.swift ${SRCROOT}/Resources/Assets/Assets.xcassets\nelse\n    echo \"warning: SwiftGen not installed, download it from https://github.com/SwiftGen/SwiftGen\"\nfi\n";
+		};
 		E9FE498376FF1536F2484608 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -492,12 +528,15 @@
 				BE1628D7239153AB00CB3E99 /* EventTableViewCell.swift in Sources */,
 				BE1628D9239171AE00CB3E99 /* ServiceContainer.swift in Sources */,
 				BE162891238EADD700CB3E99 /* EventsViewController.swift in Sources */,
+				BE1628E323919FF200CB3E99 /* Assets.swift in Sources */,
 				BE1628B8238EDCF300CB3E99 /* EventsViewModel.swift in Sources */,
 				BE1628C7238EEF6000CB3E99 /* Scheduler.swift in Sources */,
 				BE1628AF238EAEE000CB3E99 /* FavoritesViewController.swift in Sources */,
+				BE1628E72391A2F900CB3E99 /* UIColor+Extensions.swift in Sources */,
 				BE1628CC238EFA2F00CB3E99 /* OpenURLHelper.swift in Sources */,
 				BE16288D238EADD700CB3E99 /* AppDelegate.swift in Sources */,
 				BE1628CA238EF12800CB3E99 /* EventService.swift in Sources */,
+				BE1628E52391A2D700CB3E99 /* UIButton+Extensions.swift in Sources */,
 				BE1628BE238EDFC600CB3E99 /* NetworkProvider.swift in Sources */,
 				BE1628C5238EEF4600CB3E99 /* NetworkError.swift in Sources */,
 				BE1628C3238EEF1700CB3E99 /* DateFormatter+Extensions.swift in Sources */,
@@ -509,7 +548,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE1628A4238EADD800CB3E99 /* EventsTests.swift in Sources */,
+				BE1628A4238EADD800CB3E99 /* FavoritesViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -703,7 +742,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F2E26DF3958D3209373EF6C0 /* Pods-EventsTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PF72V5DW9Y;
@@ -726,7 +765,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 255037D7F4108BC38A95EC4E /* Pods-EventsTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PF72V5DW9Y;

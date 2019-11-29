@@ -12,4 +12,10 @@ class EventTableViewCell: UITableViewCell {
         super.prepareForReuse()
         disposeBag = DisposeBag()
     }
+
+    func configure(with item: Item) {
+        titleLabel.text = item.event.title
+        subtitleLabel.text = item.event.dateDescription
+        favoriteButton.setImage(item.image, tintColor: UIColor.Common.Green)
+    }
 }

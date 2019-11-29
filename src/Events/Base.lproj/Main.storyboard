@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vGu-E1-iuN">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="vGu-E1-iuN">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
@@ -30,7 +30,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="d7l-Ss-fCT"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Favorite" image="star.fill" catalog="system" id="WwB-kC-AIS"/>
+                    <tabBarItem key="tabBarItem" title="Favorite" image="tabbar-favorites" id="WwB-kC-AIS"/>
                     <connections>
                         <outlet property="tableView" destination="vGu-E1-iuN" id="Ctk-zn-jxs"/>
                     </connections>
@@ -47,9 +47,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="ewA-J9-zaH">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ewA-J9-zaH">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="center" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" id="ROk-Pw-Dsr">
                                 <rect key="frame" x="189" y="430" width="37" height="37"/>
@@ -66,7 +65,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="r3U-eJ-S1Z"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Events" image="calendar.circle.fill" catalog="system" id="8ck-BD-lP2">
+                    <tabBarItem key="tabBarItem" title="Events" image="tabbar-events" id="8ck-BD-lP2">
                         <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <connections>
@@ -87,7 +86,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.076982535419999998" green="0.48297739029999998" blue="0.1741472781" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" red="0.076982535419999998" green="0.48297739029999998" blue="0.1741472781" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="0.078431372549019607" green="0.4823529411764706" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="oqz-Wu-TtA" kind="relationship" relationship="viewControllers" id="CWc-MO-MDq"/>
@@ -100,7 +99,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="calendar.circle.fill" catalog="system" width="64" height="62"/>
-        <image name="star.fill" catalog="system" width="64" height="58"/>
+        <image name="tabbar-events" width="24" height="24"/>
+        <image name="tabbar-favorites" width="24" height="24"/>
     </resources>
 </document>

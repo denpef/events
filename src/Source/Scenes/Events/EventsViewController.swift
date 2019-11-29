@@ -1,12 +1,20 @@
 import RxCocoa
-import RxDataSources
 import RxSwift
 import UIKit
 
 struct Item {
     let event: Event
     let isFavorite: Bool
+    var image: UIImage {
+        if isFavorite {
+            return Asset.starFilled.image
+        } else {
+            return Asset.starEmpty.image
+        }
+    }
 }
+
+extension Item: Equatable {}
 
 class EventsViewController: UIViewController {
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
@@ -15,18 +23,12 @@ class EventsViewController: UIViewController {
     private let refreshControl = UIRefreshControl()
 
     private var viewModel: EventsViewModel!
-
     private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         bind()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        viewModel.input.viewDidAppear.on(.next(()))
     }
 
     // MARK: - Private
@@ -45,9 +47,7 @@ class EventsViewController: UIViewController {
                 guard let self = self else {
                     return
                 }
-                cell.titleLabel.text = item.event.title
-                cell.subtitleLabel.text = item.event.start_time
-                cell.titleLabel.textColor = item.isFavorite ? UIColor.red : UIColor.black
+                cell.configure(with: item)
                 cell.favoriteButton.rx.tap
                     .map { item.event }
                     .bind(to: self.viewModel.input.tapFavorite)
@@ -68,8 +68,9 @@ class EventsViewController: UIViewController {
                 self.showAlert(message: $0)
             }).disposed(by: disposeBag)
 
-        let indicatorAnimating = Driver.merge(viewModel.output.error.map { _ in false },
-                                              viewModel.output.items.map { _ in false })
+        let indicatorAnimating = Driver
+            .merge(viewModel.output.error.map { _ in false },
+                   viewModel.output.items.map { _ in false })
 
         indicatorAnimating
             .drive(activityIndicator.rx.isAnimating)

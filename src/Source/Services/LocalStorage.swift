@@ -13,6 +13,7 @@ final class LocalStorage {
     struct Input {
         var update: PublishSubject<[Event]>
         var swapFavoriteMark: PublishSubject<Event>
+        var cleanAll: AnyObserver<Void>
     }
 
     struct Output {
@@ -88,7 +89,13 @@ final class LocalStorage {
             }
         }).disposed(by: disposeBag)
 
-        input = Input(update: update, swapFavoriteMark: swapFavoriteMark)
+        let cleanAll = PublishSubject<Void>()
+        cleanAll.subscribe(onNext: { _ in
+            defaults.set(nil, forKey: keys.events)
+            defaults.set(nil, forKey: keys.favorite)
+        }).disposed(by: disposeBag)
+
+        input = Input(update: update, swapFavoriteMark: swapFavoriteMark, cleanAll: cleanAll.asObserver())
         output = Output(favoriteRefreshed: favoriteRefreshed.asObservable())
     }
 }

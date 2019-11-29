@@ -6,7 +6,6 @@ struct EventsViewModel {
         let refreshItems: AnyObserver<Void>
         let selectedItem: AnyObserver<Item>
         let tapFavorite: AnyObserver<Event>
-        let viewDidAppear: AnyObserver<Void>
     }
 
     struct Output {
@@ -17,7 +16,6 @@ struct EventsViewModel {
     var input: Input
     var output: Output
 
-    private var timer: Timer?
     private let disposeBag = DisposeBag()
 
     init(eventService: EventService) {
@@ -41,12 +39,14 @@ struct EventsViewModel {
             OpenURLHelper.openLink(by: item.event.url)
         }).disposed(by: disposeBag)
 
-        let viewDidAppear = PublishSubject<Void>()
+        Observable<Int>.timer(3600, period: 3600, scheduler: MainScheduler.instance)
+            .map { _ in }
+            .bind(to: refreshEvents)
+            .disposed(by: disposeBag)
 
         input = Input(refreshItems: refreshEvents.asObserver(),
                       selectedItem: selectEvent.asObserver(),
-                      tapFavorite: eventService.input.swapFavoriteMark,
-                      viewDidAppear: viewDidAppear.asObserver())
+                      tapFavorite: eventService.input.swapFavoriteMark)
 
         output = Output(items: items,
                         error: error.asDriver(onErrorJustReturn: "Unknown error"))
