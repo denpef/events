@@ -31,12 +31,14 @@ struct Event: Codable {
 
 extension Event: Hashable {}
 
+extension Event: Equatable {
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
+
 extension Event: Comparable {
     static func < (lhs: Event, rhs: Event) -> Bool {
-        if lhs.title < rhs.title {
-            return true
-        } else {
-            return lhs.id < rhs.id
-        }
+        return lhs.id < rhs.id
     }
 }
