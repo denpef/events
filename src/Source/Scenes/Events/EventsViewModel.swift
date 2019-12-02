@@ -20,6 +20,8 @@ struct EventsViewModel {
         let items: Driver<[Item]>
         /// Server error handling
         let error: Driver<String>
+        /// Timer execution signal
+        let timerExecution: Observable<Void>
     }
 
     // MARK: - Properties
@@ -33,7 +35,7 @@ struct EventsViewModel {
 
     // MARK: - Init
 
-    init(with eventService: EventService) {
+    init(with eventService: EventService, timerPeriod: TimeInterval = 3600) {
         let refreshEvents = BehaviorSubject<Void>(value: ())
         let error = eventService.output.networkError
             .map { _ in
@@ -55,9 +57,10 @@ struct EventsViewModel {
             OpenURLHelper.shared.openLink(by: item.event.url)
         }).disposed(by: disposeBag)
 
-        Observable<Int>.timer(3600, period: 3600, scheduler: MainScheduler.instance)
+        let timerExecution = Observable<Int>.timer(timerPeriod, period: timerPeriod, scheduler: MainScheduler.instance)
             .map { _ in }
-            .bind(to: refreshEvents)
+
+        timerExecution.bind(to: refreshEvents)
             .disposed(by: disposeBag)
 
         input = Input(refreshItems: refreshEvents.asObserver(),
@@ -65,6 +68,7 @@ struct EventsViewModel {
                       tapFavorite: eventService.input.swapFavoriteMark)
 
         output = Output(items: items,
-                        error: error.asDriver(onErrorJustReturn: "Unknown error"))
+                        error: error.asDriver(onErrorJustReturn: "Unknown error"),
+                        timerExecution: timerExecution)
     }
 }

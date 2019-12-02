@@ -97,7 +97,7 @@ class EventsViewModelTests: XCTestCase {
             let notConnectedError = NSError(domain: NSURLErrorDomain, code: URLError.notConnectedToInternet.rawValue)
             return OHHTTPStubsResponse(error: notConnectedError)
         }
-//        sut = EventsViewModel(with: eventService)
+        //        sut = EventsViewModel(with: eventService)
 
         sut.output.error.drive(onNext: { _ in
             errorExpectation.fulfill()
@@ -144,5 +144,21 @@ class EventsViewModelTests: XCTestCase {
         scheduler.start()
 
         XCTAssertEqual(OpenURLHelper.shared.lastURL, expectedEvent.url, "Expected URL doesn't match")
+    }
+
+    func testTimerExecution() {
+        let timerExpectation = expectation(description: "Timer fulfilled")
+
+        sut = EventsViewModel(with: eventService, timerPeriod: 1)
+
+        sut.output.timerExecution.subscribe(onNext: {
+            timerExpectation.fulfill()
+        }).disposed(by: disposeBag)
+
+        waitForExpectations(timeout: 3) { error in
+            if let error = error {
+                XCTFail("Timeout errored: \(error)")
+            }
+        }
     }
 }
