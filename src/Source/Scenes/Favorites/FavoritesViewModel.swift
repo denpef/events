@@ -26,7 +26,7 @@ struct FavoritesViewModel {
 
     // MARK: - Init
 
-    init(storage: LocalStorage) {
+    init(with storage: LocalStorage) {
         let items = storage.output.favoriteRefreshed
             .map { storage.getFavorites().sorted(by: >).map { Item(event: $0, isFavorite: true) }
             }.asDriver(onErrorJustReturn: [])

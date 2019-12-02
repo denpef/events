@@ -84,8 +84,8 @@ class EventsViewController: UIViewController {
 
 extension EventsViewController: Configurable {
     /// Configure viewModel
-    /// - Parameter serviceLocator: Service container
-    func configure(with serviceLocator: ServiceContainerType) {
-        viewModel = EventsViewModel(eventService: serviceLocator.eventService)
+    /// - Parameter serviceContainer: Service container
+    func configure(with serviceContainer: ServiceContainerType) {
+        viewModel = EventsViewModel(with: serviceContainer.eventService)
     }
 }

@@ -49,8 +49,8 @@ class FavoritesViewController: UIViewController {
 
 extension FavoritesViewController: Configurable {
     /// Configure viewModel
-    /// - Parameter serviceLocator: Service container
-    func configure(with serviceLocator: ServiceContainerType) {
-        viewModel = FavoritesViewModel(storage: serviceLocator.localStorage)
+    /// - Parameter serviceContainer: Service container
+    func configure(with serviceContainer: ServiceContainerType) {
+        viewModel = FavoritesViewModel(with: serviceContainer.localStorage)
     }
 }

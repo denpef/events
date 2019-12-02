@@ -17,4 +17,5 @@ target 'EventsTests' do
   # Pods for testing
   pod 'RxBlocking', '= 4.4.2'
   pod 'RxTest', '= 4.4.2'
+  pod 'OHHTTPStubs/Swift', '= 8.0.0'
 end

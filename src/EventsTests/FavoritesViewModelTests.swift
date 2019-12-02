@@ -14,14 +14,16 @@ class FavoritesViewModelTests: XCTestCase {
         super.setUp()
         scheduler = TestScheduler(initialClock: 0)
         disposeBag = DisposeBag()
-        storage = LocalStorage(with: StorageKeys(favorite: "favorite_test", events: "events_test"))
+        storage = LocalStorage(with: StorageKeys(favorite: "favorite_test",
+                                                 events: "events_test"))
         storage.input.cleanAll.on(.next(()))
-        sut = FavoritesViewModel(storage: storage)
+        sut = FavoritesViewModel(with: storage)
     }
 
     override func tearDown() {
         super.tearDown()
         storage.input.cleanAll.on(.next(()))
+        storage = nil
         sut = nil
         disposeBag = nil
         scheduler = nil

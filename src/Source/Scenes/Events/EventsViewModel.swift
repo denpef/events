@@ -33,7 +33,7 @@ struct EventsViewModel {
 
     // MARK: - Init
 
-    init(eventService: EventService) {
+    init(with eventService: EventService) {
         let refreshEvents = BehaviorSubject<Void>(value: ())
         let error = eventService.output.networkError
             .map { _ in
@@ -45,9 +45,10 @@ struct EventsViewModel {
                 eventService.output.serverEvents
             }
 
-        let items: Driver<[Item]> = Observable.combineLatest(serverEvents, eventService.output.favorites) { events, favorites in
-            events.sorted(by: >).map { Item(event: $0, isFavorite: favorites.contains($0)) }
-        }.asDriver(onErrorJustReturn: [])
+        let items: Driver<[Item]> = Observable
+            .combineLatest(serverEvents, eventService.output.favorites) { events, favorites in
+                events.sorted(by: >).map { Item(event: $0, isFavorite: favorites.contains($0)) }
+            }.asDriver(onErrorJustReturn: [])
 
         let selectEvent = PublishSubject<Item>()
         selectEvent.subscribe(onNext: { item in
