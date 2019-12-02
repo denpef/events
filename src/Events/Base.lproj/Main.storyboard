@@ -50,8 +50,8 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ewA-J9-zaH">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                             </tableView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="center" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" id="ROk-Pw-Dsr">
-                                <rect key="frame" x="189" y="430" width="37" height="37"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="center" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="ROk-Pw-Dsr">
+                                <rect key="frame" x="198" y="439" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="color" red="0.076982535419999998" green="0.48297739029999998" blue="0.1741472781" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
