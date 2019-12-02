@@ -54,7 +54,7 @@ class FavoritesViewModelTests: XCTestCase {
         XCTAssertEqual(action.events, [.next(0, []), .next(10, [expectedItem])], "Expected Items doesn't match")
     }
 
-    func testSwappingFavoriteEventOutside() {
+    func testFavoriteEventSwapped() {
         let expectedEvent = Event(id: "test_id_1", title: "test_title", start_time: "2019-01-12 10:05:00", url: "empty")
         let expectedItem = Item(event: expectedEvent, isFavorite: true)
 
@@ -75,7 +75,7 @@ class FavoritesViewModelTests: XCTestCase {
         XCTAssertEqual(action.events, [.next(0, []), .next(10, [expectedItem]), .next(20, [])], "Expected Items doesn't match")
     }
 
-    func testFaforiteTap() {
+    func testFaforiteTapCallsCorrectEventSwap() {
         let expectedEvent = Event(id: "test_id_1", title: "test_title", start_time: "2019-01-12 10:05:00", url: "empty")
         let expectedItem = Item(event: expectedEvent, isFavorite: true)
 
@@ -134,7 +134,7 @@ class FavoritesViewModelTests: XCTestCase {
                        "Expected item chain doesn't match")
     }
 
-    func testSelectionItem() {
+    func testSelectionItemCallsHelper() {
         let expectedEvent = Event(id: "test_id_1", title: "test_title", start_time: "2019-01-12 10:05:00", url: "empty")
         let expectedItem = Item(event: expectedEvent, isFavorite: true)
 

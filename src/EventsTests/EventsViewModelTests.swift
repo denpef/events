@@ -21,13 +21,13 @@ class EventsViewModelTests: XCTestCase {
             "events": {
                 "event": [
                     {
-                        "url": "http://sandiego.eventful.com/events",
+                        "url": "test_url_1",
                         "id": "E0-001-132531203-1@2019113010",
                         "start_time": "2020-01-26 09:00:00",
                         "title": "https://foodpenther.com/black-label-x/"
                     },
                     {
-                        "url": "http://sandiego.eventful.com/events",
+                        "url": "test_url_2",
                         "id": "E0-001-132472166-7",
                         "start_time": "2020-01-25 09:00:00",
                         "title": "WORKSHOP: Integrating Sustainable Practices into Your Native Garden"
@@ -97,7 +97,6 @@ class EventsViewModelTests: XCTestCase {
             let notConnectedError = NSError(domain: NSURLErrorDomain, code: URLError.notConnectedToInternet.rawValue)
             return OHHTTPStubsResponse(error: notConnectedError)
         }
-        //        sut = EventsViewModel(with: eventService)
 
         sut.output.error.drive(onNext: { _ in
             errorExpectation.fulfill()
@@ -110,12 +109,13 @@ class EventsViewModelTests: XCTestCase {
         }
     }
 
-    func testFavoriteSwapped() {
+    func testFavoriteTapCallsStorage() {
         let expectedEvent = Event(id: "test_id_1", title: "test_title", start_time: "2019-01-12 10:05:00", url: "empty")
 
-        // create scheduler
+        // Create scheduler
         let action = scheduler.createObserver(Event.self)
 
+        // Binding
         storage.input.swapFavoriteMark
             .bind(to: action)
             .disposed(by: disposeBag)
@@ -124,16 +124,24 @@ class EventsViewModelTests: XCTestCase {
             .bind(to: sut.input.tapFavorite)
             .disposed(by: disposeBag)
 
+        // Run sheduler execution
+        scheduler.start()
+
+        XCTAssertEqual(action.events, [.next(10, expectedEvent)], "Expected Items doesn't match")
+        XCTAssertEqual(storage.getFavorites(), [expectedEvent], "Storage didn't changed")
+
         scheduler.createColdObservable([.next(20, expectedEvent)])
             .bind(to: sut.input.tapFavorite)
             .disposed(by: disposeBag)
 
+        // Run sheduler execution second time
         scheduler.start()
 
-        XCTAssertEqual(action.events, [.next(10, expectedEvent), .next(20, expectedEvent)], "Expected Items doesn't match")
+        XCTAssertEqual(action.events, [.next(10, expectedEvent), .next(30, expectedEvent)], "Expected Items doesn't match")
+        XCTAssertEqual(storage.getFavorites(), [], "Unmark doesn't work")
     }
 
-    func testSelectionItem() {
+    func testSelectionItemCallsHelper() {
         let expectedEvent = Event(id: "test_id_1", title: "test_title", start_time: "2019-01-12 10:05:00", url: "empty")
         let expectedItem = Item(event: expectedEvent, isFavorite: true)
 

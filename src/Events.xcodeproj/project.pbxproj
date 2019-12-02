@@ -162,8 +162,8 @@
 		BE1628A2238EADD800CB3E99 /* EventsTests */ = {
 			isa = PBXGroup;
 			children = (
-				BE1628A3238EADD800CB3E99 /* FavoritesViewModelTests.swift */,
 				BE1628E82391C14400CB3E99 /* EventsViewModelTests.swift */,
+				BE1628A3238EADD800CB3E99 /* FavoritesViewModelTests.swift */,
 				BE1628A5238EADD800CB3E99 /* Info.plist */,
 			);
 			path = EventsTests;
@@ -295,7 +295,6 @@
 				BE162885238EADD700CB3E99 /* Sources */,
 				BE162886238EADD700CB3E99 /* Frameworks */,
 				BE162887238EADD700CB3E99 /* Resources */,
-				BE1628B1238EBC9500CB3E99 /* SwiftFormat */,
 				58D1D126407016AE27BC31DE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -425,24 +424,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Events/Pods-Events-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		BE1628B1238EBC9500CB3E99 /* SwiftFormat */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = SwiftFormat;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n    if which swiftformat >/dev/null; then\n        swiftformat .\n    else\n        echo \"warning: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\n    fi\nfi\n";
 		};
 		D7A72D2EF3D41EB80CA6660C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
