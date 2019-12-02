@@ -35,8 +35,8 @@ struct EventsViewModel {
 
     // MARK: - Init
 
-    init(with eventService: EventService, timerPeriod: TimeInterval = 3600) {
-        let refreshEvents = BehaviorSubject<Void>(value: ())
+    init(with eventService: EventService, timerPeriod: Int = 3600) {
+        let refreshEvents = PublishSubject<Void>()
         let error = eventService.output.networkError
             .map { _ in
                 "Network error. Please try later"
@@ -57,7 +57,9 @@ struct EventsViewModel {
             OpenURLHelper.shared.openLink(by: item.event.url)
         }).disposed(by: disposeBag)
 
-        let timerExecution = Observable<Int>.timer(timerPeriod, period: timerPeriod, scheduler: MainScheduler.instance)
+        let timeInterval = DispatchTimeInterval.seconds(timerPeriod)
+        let timerExecution = Observable<Int>
+            .timer(timeInterval, period: timeInterval, scheduler: MainScheduler.instance)
             .map { _ in }
 
         timerExecution.bind(to: refreshEvents)

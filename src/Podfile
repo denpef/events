@@ -3,8 +3,8 @@ inhibit_all_warnings!
 use_frameworks!
 
 def shared_pods
-  pod 'RxSwift', '~> 4.4'
-  pod 'RxCocoa', '~> 4.4'
+  pod 'RxSwift'
+  pod 'RxCocoa'
 end
 
 target 'Events' do
@@ -15,7 +15,7 @@ target 'EventsTests' do
   shared_pods
   
   # Pods for testing
-  pod 'RxBlocking', '= 4.4.2'
-  pod 'RxTest', '= 4.4.2'
-  pod 'OHHTTPStubs/Swift', '= 8.0.0'
+  pod 'RxBlocking'
+  pod 'RxTest'
+  pod 'OHHTTPStubs/Swift'
 end

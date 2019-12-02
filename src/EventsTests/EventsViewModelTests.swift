@@ -84,6 +84,8 @@ class EventsViewModelTests: XCTestCase {
             XCTFail("An error has occurred: \(error)")
         }).disposed(by: disposeBag)
 
+        sut.input.refreshItems.onNext(())
+        
         waitForExpectations(timeout: 5) { error in
             if let error = error {
                 XCTFail("Timeout errored: \(error)")
@@ -102,6 +104,8 @@ class EventsViewModelTests: XCTestCase {
             errorExpectation.fulfill()
         }).disposed(by: disposeBag)
 
+        sut.input.refreshItems.onNext(())
+        
         waitForExpectations(timeout: 5) { error in
             if let error = error {
                 XCTFail("Timeout errored: \(error)")

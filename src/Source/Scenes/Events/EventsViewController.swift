@@ -72,6 +72,8 @@ class EventsViewController: UIViewController {
         indicatorAnimating
             .drive(refreshControl.rx.isRefreshing)
             .disposed(by: disposeBag)
+        
+        viewModel.input.refreshItems.onNext(())
     }
 
     private func showAlert(message: String?) {
