@@ -32,7 +32,7 @@ struct Event: Codable {
 extension Event: Hashable {}
 
 extension Event: Equatable {
-    static func == (lhs: Self, rhs: Self) -> Bool {
+    static func == (lhs: Event, rhs: Event) -> Bool {
         return lhs.id == rhs.id
     }
 }

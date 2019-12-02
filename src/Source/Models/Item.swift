@@ -14,13 +14,13 @@ struct Item {
 }
 
 extension Item: Comparable {
-    static func < (lhs: Self, rhs: Self) -> Bool {
+    static func < (lhs: Item, rhs: Item) -> Bool {
         return lhs.event < rhs.event
     }
 }
 
 extension Item: Equatable {
-    static func == (lhs: Self, rhs: Self) -> Bool {
+    static func == (lhs: Item, rhs: Item) -> Bool {
         return lhs.event == rhs.event
     }
 }
