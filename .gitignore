@@ -10,14 +10,14 @@ DerivedData/
 **/build/
 */**/*.ipa
 .idea
-*.lock
-**/*.lock
+#*.lock
+#**/*.lock
 
 **/build/
 */**/*.ipa
 .idea
-*.lock
-**/*.lock
+#*.lock
+#**/*.lock
 
 ## Various settings
 *.pbxuser

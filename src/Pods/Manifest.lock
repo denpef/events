@@ -1,0 +1,52 @@
+PODS:
+  - OHHTTPStubs/Core (8.0.0)
+  - OHHTTPStubs/Default (8.0.0):
+    - OHHTTPStubs/Core
+    - OHHTTPStubs/JSON
+    - OHHTTPStubs/NSURLSession
+    - OHHTTPStubs/OHPathHelpers
+  - OHHTTPStubs/JSON (8.0.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/NSURLSession (8.0.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/OHPathHelpers (8.0.0)
+  - OHHTTPStubs/Swift (8.0.0):
+    - OHHTTPStubs/Default
+  - RxAtomic (4.4.2)
+  - RxBlocking (4.4.2):
+    - RxAtomic (>= 4.4.2, ~> 4.4)
+    - RxSwift (>= 4.4.2, ~> 4.4)
+  - RxCocoa (4.5.0):
+    - RxSwift (>= 4.4.2, ~> 4.4)
+  - RxSwift (4.5.0)
+  - RxTest (4.4.2):
+    - RxAtomic (>= 4.4.2, ~> 4.4)
+    - RxSwift (>= 4.4.2, ~> 4.4)
+
+DEPENDENCIES:
+  - OHHTTPStubs/Swift (= 8.0.0)
+  - RxBlocking (= 4.4.2)
+  - RxCocoa (~> 4.4)
+  - RxSwift (~> 4.4)
+  - RxTest (= 4.4.2)
+
+SPEC REPOS:
+  trunk:
+    - OHHTTPStubs
+    - RxAtomic
+    - RxBlocking
+    - RxCocoa
+    - RxSwift
+    - RxTest
+
+SPEC CHECKSUMS:
+  OHHTTPStubs: 9cbce6364bec557cc3439aa6bb7514670d780881
+  RxAtomic: d00e97c10db88c6f08540e0bf2752fc5a2404167
+  RxBlocking: e96fdda1473d81332a6ed2cface935dc2167a122
+  RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
+  RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
+  RxTest: 6433d5b6229f5de424fa534bc22b5e6c38b0b671
+
+PODFILE CHECKSUM: 6e60a32ca4a342f237b9f85d1b914b9a71e4a11f
+
+COCOAPODS: 1.8.4
